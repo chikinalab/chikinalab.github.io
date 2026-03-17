@@ -26,6 +26,7 @@
           <li id="projectslink"><a href="projects.html">Projects</a></li>
           <li id="toolslink"><a class="active" href="tools.html">Tools</a></li>
           <li id="peoplelink"><a href="people.html">People</a></li>
+          <li id="resourceslink"><a href="resources.html">Resources</a></li>
         </ul>
       </div>
 
@@ -34,31 +35,31 @@
         <h1>InfluenceNet</h1>
         <img class="tool" src="img/influenceNet.png" alt="InfluenceNet">
         <div class="tool">
-          <p>A model for learning distance-dependent cooperative influence between transcription factor binding sites from sequence.</p>
+          <p>A transparent convolutional neural network that models how transcription factor binding motifs interact across DNA sequences. Unlike black-box deep learning models that require expensive post-hoc analysis, InfluenceNet directly encodes motif influence as a position- and motif-specific profile, providing immediate interpretability while matching state-of-the-art performance.</p>
           <p><a href="https://github.com/chikinalab/InfluenceNet">code</a></p>
-          <p><b>Paper:</b> <span class="paper"><a href="https://www.biorxiv.org/content/10.1101/2025.11.20.689553v1">InfluenceNet</a></span></p>
+          <p><b>Paper:</b> <span class="paper"><a href="https://www.biorxiv.org/content/10.1101/2025.11.20.689553v1">InfluenceNet: Encoding Motif Influence for Interpretable Modeling of Cis-Regulatory Syntax</a></span></p>
         </div>
 
         <h1>dLEM</h1>
         <img class="tool" src="img/dlem.png" alt="dLEM">
         <div class="tool">
-          <p>A method for directly fitting loop extrusion models to contact map data.</p>
+          <p>A differentiable framework that fits the loop-extrusion steady state to Hi-C data, enabling compact explanations of observed structures in terms of cohesin translocation rates. Enables seamless integration with other 1D data, global perturbation predictions, and dramatically simplifies sequence to function models of chromatin conformation.</p>
           <p><a href="https://github.com/chikinalab/dLEM">code</a> | Deep dLEM model: <a href="https://github.com/chikinalab/dLEMpytorch">code</a></p>
-          <p><b>Paper:</b> <span class="paper"><a href="https://www.biorxiv.org/content/10.1101/2025.10.17.682904v2">dLEM</a></span></p>
+          <p><b>Paper:</b> <span class="paper"><a href="https://www.biorxiv.org/content/10.1101/2025.10.17.682904v2">Mechanistic Genome Folding at Scale through the Differentiable Loop Extrusion Model</a></span></p>
         </div>
 
         <h1>MotifDiff</h1>
         <img class="tool" src="img/motifDiff.png" alt="MotifDiff">
         <div class="tool">
-          <p>A method for detecting differential transcription factor binding from sequence variants.</p>
+          <p>A computational tool that rapidly predicts how genetic variants affect transcription factor binding to DNA. MotifDiff uses biophysical models based on position weight matrices and a novel probability-based normalization strategy to score millions of variants in minutes, providing interpretable, mechanistic insights that address limitations of deep learning approaches on common variants.</p>
           <p><a href="https://github.com/rezwanhosseini/MotifDiff">code</a></p>
-          <p><b>Paper:</b> <span class="paper"><a href="https://academic.oup.com/nar/article/53/18/gkaf940/8277917">MotifDiff</a></span></p>
+          <p><b>Paper:</b> <span class="paper"><a href="https://academic.oup.com/nar/article/53/18/gkaf940/8277917">Ultra-fast Variant Effect Prediction Using Biophysical Transcription Factor Binding Models</a></span></p>
         </div>
 
         <h1>L0 Segmentation</h1>
         <img class="tool" src="img/l0.png" alt="L0">
         <div class="tool">
-          <p>An ultra-fast solution for the L0 segmentation problem for discovering features from complex epigenetic signals or any sequential data.</p>
+          <p>An ultra-fast solution for approximating sequential signals as piecewise-constant segments, enabling compression and denoising of nucleotide-resolution epigenetic data. Unlike fused lasso methods that dampen the global signal, L0 segmentation preserves key biological features and can be integrated into other machine learning models for downstream analysis.</p>
           <p><a href="https://github.com/boooooogey/l01segmentation">code</a></p>
           <p><b>Paper:</b> <span class="paper"><a href="https://www.biorxiv.org/content/10.1101/2023.01.26.525794v1">A unified hypothesis-free feature extraction framework for diverse epigenomic data</a></span></p>
         </div>
@@ -66,7 +67,7 @@
         <h1>PCnt</h1>
         <img class="tool" src="img/pcnt.png" alt="PCnt">
         <div class="tool">
-          <p>PCnt is a hybrid optimization method for causal learning that combines the strengths of PC and NOTEARS and shows superior performance on real data biological benchmarks.</p>
+          <p>A hybrid method for causal discovery that integrates the PC algorithm's accuracy at estimating causal graph structure with NOTEARS' continuous optimization for quantifying causal effect sizes. PCnt uses PC's output as a constraint within NOTEARS' framework, achieving superior performance on real biological benchmarks including Perturb-seq and eQTL data.</p>
           <p><a href="https://github.com/zhu-yh1/PC-NOTEARS">code</a></p>
           <p><b>Paper:</b> <span class="paper"><a href="https://academic.oup.com/bioinformatics/article/40/Supplement_2/ii87/7749067">A hybrid constrained continuous optimization approach for optimal causal discovery from biological data</a></span></p>
         </div>
@@ -74,7 +75,7 @@
         <h1>InstaPrism</h1>
         <img class="tool" src="img/insta.png" alt="InstaPrism">
         <div class="tool">
-          <p>A fast re-implementation of a highly performant proportion estimation method: BayesPrism.</p>
+          <p>A fast R package for cell-type deconvolution that replaces BayesPrism's computationally expensive Gibbs sampling with a fixed-point algorithm, producing effectively equivalent results with major speed and memory improvements. Includes precompiled reference datasets for various cancer types to streamline analysis workflows.</p>
           <p><a href="https://github.com/humengying0907/InstaPrism">code</a></p>
           <p><b>Paper:</b> <span class="paper"><a href="https://academic.oup.com/bioinformatics/article/40/7/btae440/7708397">InstaPrism: an R package for fast implementation of BayesPrism</a></span></p>
         </div>
@@ -82,7 +83,7 @@
         <h1>Heterogeneous Bulk RNAseq Simulation</h1>
         <img class="tool" src="img/het.png" alt="HetSim">
         <div class="tool">
-          <p>A framework for simulating realistic bulk data from single cell to enable accurate cell type proportion and deconvolution benchmarking.</p>
+          <p>A framework for benchmarking cell-type deconvolution methods using realistic simulated bulk RNA-seq. Standard simulation pipelines randomly sample single cells regardless of intrinsic differences, producing unrealistic variance patterns. This heterogeneous simulation strategy reveals that deconvolution method classes differ dramatically in robustness to cellular heterogeneity, with BayesPrism and hybrid MuSiC/CIBERSORTx approaches performing best.</p>
           <p><a href="https://github.com/humengying0907/deconvBenchmarking">code</a></p>
           <p><b>Paper:</b> <span class="paper"><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03292-w">Heterogeneous pseudobulk simulation enables realistic benchmarking of cell-type deconvolution methods</a></span></p>
         </div>
@@ -90,7 +91,7 @@
         <h1>TISFM: Totally Interpretable Sequence to Function Model</h1>
         <img class="tool" src="img/tisfm2.png" alt="TISFM">
         <div class="tool">
-          <p>An intrinsically interpretable neural network architecture for sequence-to-function modeling that replaces convolution towers with entirely interpretable layers and transformations.</p>
+          <p>An intrinsically interpretable neural network for predicting genomic function from DNA sequence. Unlike standard deep learning models where interpretability requires expensive post-hoc analysis, TISFM's internal parameters directly correspond to relevant sequence motifs. Tested on open chromatin data across immune cell types, it outperforms standard CNN models while correctly identifying transcription factors with known roles in cell differentiation.</p>
           <p><a href="https://github.com/boooooogey/ATAConv">code</a></p>
           <p><b>Paper:</b> <span class="paper"><a href="https://academic.oup.com/bioinformatics/article/39/Supplement_1/i413/7210441">TISFM: totally interpretable sequence to function model</a></span></p>
         </div>
@@ -98,7 +99,7 @@
         <h1>NIFA: Non-negative Independent Factor Analysis</h1>
         <img class="tool" src="img/nifa3.png" alt="NIFA">
         <div class="tool">
-          <p>A model that generalizes non-negative matrix factorization (NMF) and independent component analysis (ICA) to find disentangled representations of single cell data.</p>
+          <p>A probabilistic model that simultaneously captures discrete cell-type identity and continuous pathway activity in single-cell RNA-seq data by combining properties of non-negative matrix factorization and independent component analysis. NIFA outperforms ICA, PCA, NMF, and scCoGAPS on benchmarks, and when applied to immunotherapy data, reproduces and refines previous findings while enabling discovery of new clinically relevant cell states.</p>
           <p><a href="https://github.com/wgmao/NIFA">code</a></p>
           <p><b>Paper:</b> <span class="paper"><a href="https://academic.oup.com/bioinformatics/article/38/10/2749/6550501">Non-negative Independent Factor Analysis disentangles discrete and continuous sources of variation in scRNA-seq data</a></span></p>
         </div>
@@ -126,7 +127,7 @@
         <h1>CellCODE</h1>
         <img class="tool" src="img/CellCode.png" alt="CellCODE">
         <div class="tool">
-          <p>An R package that performs multi-layered differential expression analysis to account for tissue composition heterogeneity. It estimates cell-proportions, performs correction, and assigns transcriptionally regulated genes to the tissue of origin.</p>
+          <p>An R package for differential expression analysis that accounts for varying cell-type proportions in heterogeneous tissue samples. CellCODE uses latent variable analysis to estimate surrogate proportion variables from marker genes, then incorporates these into differential expression to improve detection of regulated genes and assign them to their cell type of origin — all without requiring additional experimental data beyond expression measurements.</p>
           <p><a href="https://github.com/mchikina/CellCODE">code</a></p>
           <p><b>Paper:</b> <span class="paper"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4426841/">CellCODE: a robust latent variable approach to differential expression analysis for heterogeneous cell populations</a></span></p>
         </div>
@@ -134,7 +135,7 @@
         <h1>DataRemix</h1>
         <img class="tool" src="img/DataRemix.png" alt="DataRemix">
         <div class="tool">
-          <p>An R package to optimize a data-normalization transform for specific biological tasks.</p>
+          <p>An R package that optimizes a singular value decomposition-based data transformation with three tunable parameters to prioritize biological signals over noise, without requiring external dataset-specific knowledge. DataRemix outperforms standard normalization methods and was used to discover what is believed to be the first replicable trans-eQTL effect in human brain tissue.</p>
           <p><a href="https://github.com/wgmao/DataRemix">code</a></p>
         </div>
 

@@ -343,10 +343,21 @@ div.persontext p.role {
 }
 
 /* ===== Projects & Tools: Image + Text ===== */
-img.project,
-img.tool {
+img.project {
     width: 140px;
     height: 140px;
+    object-fit: contain;
+    float: left;
+    margin: 0.3em 1.2em 0.8em 0;
+    border-radius: 8px;
+    background: #f8f4f5;
+    padding: 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+img.tool {
+    width: 280px;
+    height: 280px;
     object-fit: contain;
     float: left;
     margin: 0.3em 1.2em 0.8em 0;
@@ -377,8 +388,14 @@ div.paper {
 }
 
 span.paper a {
-    font-weight: 500;
-    color: #2d2d2d;
+    font-weight: 600;
+    color: hsl(353, 60%, 38%);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+span.paper a:hover {
+    color: hsl(353, 76%, 50%);
 }
 
 div.paper h4 {
@@ -547,13 +564,20 @@ sup { font-size: smaller; vertical-align: 0.5em; line-height: 1px; }
         height: 160px;
     }
 
-    img.project,
-    img.tool {
+    img.project {
         float: none;
         display: block;
         margin: 0.5em auto;
         width: 120px;
         height: 120px;
+    }
+
+    img.tool {
+        float: none;
+        display: block;
+        margin: 0.5em auto;
+        width: 200px;
+        height: 200px;
     }
 
     h1 { font-size: 1.25rem; }

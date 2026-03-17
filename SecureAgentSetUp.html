@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chikina Lab: Secure Agent User Setup on Linux</title>
+    <meta name="author" content="Chikina Lab">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .content pre {
+        background: #f5f2f3;
+        border: 1px solid #e0d5d8;
+        border-radius: 6px;
+        padding: 1em 1.2em;
+        overflow-x: auto;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0.8em 0 1.2em;
+      }
+      .content code {
+        background: #f5f2f3;
+        border-radius: 3px;
+        padding: 0.15em 0.4em;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 0.9em;
+      }
+      .content pre code {
+        background: none;
+        padding: 0;
+      }
+      .content table {
+        width: 100%;
+        margin: 1em 0;
+        border-collapse: collapse;
+      }
+      .content th, .content td {
+        padding: 0.6em 1em;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      .content th {
+        background: hsl(353, 30%, 95%);
+        font-weight: 700;
+      }
+      .content hr {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 2em 0;
+      }
+      .customize-box {
+        background: hsl(353, 40%, 97%);
+        border: 2px solid hsl(353, 76%, 40%);
+        border-radius: 8px;
+        padding: 1.2em 1.5em;
+        margin: 1.5em 0 2em;
+      }
+      .customize-box h2 {
+        margin: 0 0 0.6em 0;
+        padding: 0;
+        border: none;
+        background: none;
+        font-size: 1.1rem;
+        color: hsl(353, 76%, 40%);
+      }
+      .customize-box label {
+        display: block;
+        font-weight: 600;
+        margin: 0.6em 0 0.2em;
+        font-size: 0.95rem;
+      }
+      .customize-box input {
+        width: 100%;
+        max-width: 400px;
+        padding: 0.5em 0.7em;
+        font-size: 0.95rem;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .customize-box input:focus {
+        outline: none;
+        border-color: hsl(353, 76%, 40%);
+        box-shadow: 0 0 0 2px hsla(353, 76%, 40%, 0.15);
+      }
+      .customize-box .hint {
+        font-size: 0.82rem;
+        color: #888;
+        margin-top: 0.2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="bannerimg">
+        <img src="img/diag.png" alt="Chikina Lab banner">
+        <div class="title"><span>Chikina Lab</span></div>
+      </div>
+
+      <div id="navigate">
+        <h4>Navigation</h4>
+        <ul id="navlinks">
+          <li id="homelink"><a href="index.html">Home</a></li>
+          <li id="projectslink"><a href="projects.html">Projects</a></li>
+          <li id="toolslink"><a href="tools.html">Tools</a></li>
+          <li id="peoplelink"><a href="people.html">People</a></li>
+          <li id="resourceslink"><a href="resources.html">Resources</a></li>
+        </ul>
+      </div>
+
+      <div class="content">
+
+        <h1>Secure Agent User Setup on Linux</h1>
+        <p>A guide to creating an isolated Linux user for running AI agents, with scoped access to a specific folder, shared conda environments, and a clean terminal experience.</p>
+
+        <div class="customize-box">
+          <h2>Customize for your setup</h2>
+          <p>Enter your details below and all commands on this page will update automatically.</p>
+          <label for="input-user">Your Linux username</label>
+          <input type="text" id="input-user" value="jsmith" spellcheck="false">
+          <div class="hint">e.g. jsmith, alice</div>
+          <label for="input-workspace">Workspace directory (absolute path)</label>
+          <input type="text" id="input-workspace" value="/home/jsmith/Dropbox/Agents" spellcheck="false">
+          <div class="hint">The folder the agent should have full access to, e.g. /home/jsmith/projects/agent-work</div>
+        </div>
+
+        <div id="guide-content">
+
+        <hr>
+
+        <h2>Overview</h2>
+        <p>The goal is to create a user called <code>agent</code> that:</p>
+        <ul>
+          <li>Has no password (only accessible via sudo from your main user)</li>
+          <li>Has full read/write access to <code class="tpl">{{WORKSPACE}}</code> only</li>
+          <li>Cannot list or read any other part of your home directory</li>
+          <li>Can use your existing mambaforge conda environments without copying them</li>
+          <li>Has a bright color-coded terminal so that you don't get confused what user you are</li>
+        </ul>
+
+        <hr>
+
+        <h2>1. Create the Agent User</h2>
+        <p>Create the user with a bash shell but no password, then lock the account so it can only be accessed via sudo.</p>
+<pre><code>sudo useradd -m -s /bin/bash agent
+sudo usermod -L agent</code></pre>
+        <ul>
+          <li><code>-m</code> creates a home directory at <code>/home/agent</code></li>
+          <li><code>-s /bin/bash</code> gives a real shell (required for interactive use)</li>
+          <li><code>-L</code> locks the password, preventing direct login</li>
+        </ul>
+
+        <hr>
+
+        <h2>2. Allow Passwordless sudo Switch</h2>
+        <p>Configure sudo so you can switch to <code>agent</code> without being prompted for a password.</p>
+<pre><code>sudo visudo</code></pre>
+        <p>Add this line at the bottom:</p>
+<pre><code>{{USER}} ALL=(agent) NOPASSWD: ALL</code></pre>
+        <p>Save and exit. Now you can switch to the agent user without any password prompt.</p>
+
+        <hr>
+
+        <h2>3. Add a Convenient Alias</h2>
+        <p>Add an alias to your own <code>.bashrc</code> so switching to the agent is a single word:</p>
+<pre><code>echo "alias agent='sudo -u agent bash --login'" >> /home/{{USER}}/.bashrc
+source /home/{{USER}}/.bashrc</code></pre>
+        <p>Now just type <code>agent</code> to open an interactive session as the agent user.</p>
+
+        <hr>
+
+        <h2>4. Create a Shared Group for Workspace Access</h2>
+        <p>Use a dedicated group shared between both users.</p>
+<pre><code>sudo groupadd agents-group
+sudo usermod -aG agents-group {{USER}}
+sudo usermod -aG agents-group agent</code></pre>
+
+        <hr>
+
+        <h2>5. Set Filesystem Permissions</h2>
+        <p>This is the core of the isolation. The agent can traverse the path to the workspace but cannot list or read anything else along the way.</p>
+<pre><code># Your home dir: group can traverse only, no world access
+chmod o= /home/{{USER}}
+chmod o+x /home/{{USER}}
+
+# Each parent directory of the workspace: group traverse only
+{{PARENT_PERMS}}
+
+# Workspace folder: full group read/write/execute, no world permissions
+sudo chgrp -R agents-group {{WORKSPACE}}
+sudo chmod -R g+rwx,o-rwx {{WORKSPACE}}</code></pre>
+
+        <h3>Lock Down All Other Home Directories</h3>
+        <p>Ensure nothing else in your home is world-readable. Run this once as a sweep:</p>
+<pre><code>find /home/{{USER}} -maxdepth 1 -type d ! -name '{{USER}}' -exec chmod o-rwx {} +</code></pre>
+        <p>This strips world permissions from every folder directly under your home in one command. Re-run it if you create new folders in the future.</p>
+
+        <p><strong>What this means in practice:</strong></p>
+        <table>
+          <thead>
+            <tr>
+              <th>Path</th>
+              <th>agent access</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>/home/{{USER}}/</code></td><td>Traverse only — cannot list contents</td></tr>
+            <tr><td><code>/home/{{USER}}/Documents</code>, etc.</td><td>No access</td></tr>
+            <tr><td id="table-parents"></td><td>Traverse only — cannot list contents</td></tr>
+            <tr><td><code class="tpl">{{WORKSPACE}}/</code></td><td>Full read/write</td></tr>
+          </tbody>
+        </table>
+
+        <hr>
+
+        <h2>6. Symlink Workspace into Agent's Home</h2>
+        <p>Rather than having the agent navigate a long path, create a symlink in the agent's home directory:</p>
+<pre><code>sudo ln -s {{WORKSPACE}} /home/agent/workspace</code></pre>
+        <p>The agent user now sees <code>~/workspace</code> as a clean entry point.</p>
+
+        <hr>
+
+        <h2>7. Give Agent Access to Mambaforge Environments</h2>
+        <p>Grant read and execute access to your conda envs (no write, so the agent cannot modify them). In this case they live in the <code>mambaforge</code> directory. Check your setup.</p>
+<pre><code>chmod o+x /home/{{USER}}/mambaforge
+chmod o+x /home/{{USER}}/mambaforge/envs
+chmod -R o+rx /home/{{USER}}/mambaforge/envs</code></pre>
+
+        <hr>
+
+        <h2>8. Configure the Agent's .bashrc</h2>
+        <p>Set up conda initialization, a custom prompt, and file coloring by editing the agent's <code>.bashrc</code> as root:</p>
+<pre><code>sudo nano /home/agent/.bashrc</code></pre>
+        <p>Add the following:</p>
+<pre><code># Initialize conda
+source /home/{{USER}}/mambaforge/etc/profile.d/conda.sh
+
+# Colored prompt: bright pink username, bright yellow host and path
+PS1='\[\e[1;95m\]agent\[\e[0m\]@\[\e[1;93m\]\h\[\e[0m\]:\[\e[1;93m\]\w\[\e[0m\]\$ '
+
+# Enable file/directory color highlighting
+alias ls='ls --color=auto'
+# Go to the right directory on login
+cd ~/workspace</code></pre>
+
+        <hr>
+
+        <h2>9. Ensure Bash Profile Sources .bashrc</h2>
+        <p>So that <code>--login</code> sessions pick up everything in <code>.bashrc</code>:</p>
+<pre><code>sudo bash -c 'echo "source ~/.bashrc" >> /home/agent/.bash_profile'</code></pre>
+
+        <hr>
+
+        <h2>10. Verify Everything Works</h2>
+        <p>Switch to the agent and run these checks:</p>
+<pre><code>agent
+
+# Confirm correct user
+whoami                        # should print: agent
+
+# Confirm conda works
+conda info
+
+# Confirm workspace is accessible
+ls ~/workspace
+
+# Confirm you cannot escape into personal files
+ls /home/{{USER}}             # should be: Permission denied
+
+# Confirm no ugly green background on directories
+ls ~/workspace</code></pre>
+
+        <hr>
+
+        <h2>Day-to-Day Usage</h2>
+<pre><code># Switch to agent (from your main user)
+agent
+
+# New project folders under the workspace automatically inherit group permissions
+# If you ever need to reset permissions on the whole folder:
+sudo chmod -R g+rwx,o-rwx {{WORKSPACE}}</code></pre>
+
+        </div>
+      </div>
+
+      <script>
+        (function() {
+          var userInput = document.getElementById('input-user');
+          var workspaceInput = document.getElementById('input-workspace');
+          var guideEl = document.getElementById('guide-content');
+          var tableParentsCell = document.getElementById('table-parents');
+
+          // Save the original template HTML
+          var templateHTML = guideEl.innerHTML;
+
+          function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+          }
+
+          function getParentDirs(workspace, homeDir) {
+            // Get directories between home and workspace (exclusive of both)
+            var parents = [];
+            if (!workspace.startsWith(homeDir + '/')) return parents;
+            var relative = workspace.slice(homeDir.length + 1);
+            var parts = relative.split('/');
+            // Remove the last part (that's the workspace leaf)
+            parts.pop();
+            var current = homeDir;
+            for (var i = 0; i < parts.length; i++) {
+              current += '/' + parts[i];
+              parents.push(current);
+            }
+            return parents;
+          }
+
+          function buildParentPerms(parents, user) {
+            if (parents.length === 0) return '# (no intermediate directories)';
+            var lines = [];
+            for (var i = 0; i < parents.length; i++) {
+              lines.push('chmod o= ' + parents[i]);
+              lines.push('chmod o+x ' + parents[i]);
+              lines.push('sudo chgrp agents-group ' + parents[i]);
+              lines.push('chmod g+x ' + parents[i]);
+            }
+            // Also need to set group on home dir
+            lines.unshift('sudo chgrp agents-group /home/' + user);
+            lines.unshift('chmod g+x /home/' + user);
+            return lines.join('\n');
+          }
+
+          function update() {
+            var user = userInput.value.trim() || 'USERNAME';
+            var workspace = workspaceInput.value.trim().replace(/\/+$/, '') || '/path/to/workspace';
+            var homeDir = '/home/' + user;
+            var parents = getParentDirs(workspace, homeDir);
+            var parentPerms = buildParentPerms(parents, user);
+
+            // Build table parents row content
+            var parentCodes = '';
+            if (parents.length > 0) {
+              var parts = [];
+              for (var i = 0; i < parents.length; i++) {
+                parts.push('<code>' + escapeHTML(parents[i]) + '/</code>');
+              }
+              parentCodes = parts.join(', ');
+            } else {
+              parentCodes = '<code>(none)</code>';
+            }
+
+            var html = templateHTML
+              .replace(/\{\{USER\}\}/g, escapeHTML(user))
+              .replace(/\{\{WORKSPACE\}\}/g, escapeHTML(workspace))
+              .replace(/\{\{PARENT_PERMS\}\}/g, escapeHTML(parentPerms));
+
+            guideEl.innerHTML = html;
+
+            // Re-grab and set the table parents cell (it was replaced by innerHTML)
+            var newCell = document.getElementById('table-parents');
+            if (newCell) {
+              newCell.innerHTML = parentCodes;
+            }
+          }
+
+          userInput.addEventListener('input', update);
+          workspaceInput.addEventListener('input', update);
+
+          // Initial render
+          update();
+        })();
+      </script>
+
+      <script>
+        var sc_project=11748090;
+        var sc_invisible=1;
+        var sc_security="faa9c7cd";
+      </script>
+      <script src="https://www.statcounter.com/counter/counter.js"></script>
+      <noscript><div class="statcounter"><a title="Web Analytics" href="http://statcounter.com/"><img class="statcounter" src="//c.statcounter.com/11748090/0/faa9c7cd/1/" alt="Web Analytics"></a></div></noscript>
+    </div>
+  </body>
+</html>

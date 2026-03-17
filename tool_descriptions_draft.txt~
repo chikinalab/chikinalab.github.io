@@ -1,0 +1,58 @@
+Tool Description Suggestions
+=============================
+Edit these as you like, then let me know and I'll apply them to tools.html.
+
+
+InfluenceNet
+------------
+A transparent convolutional neural network that models how transcription factor binding motifs interact across DNA sequences. Unlike black-box deep learning models that require expensive post-hoc analysis, InfluenceNet directly encodes motif influence as a position- and motif-specific profile, providing immediate interpretability while matching state-of-the-art performance.
+
+
+dLEM
+----
+A differentiable framework that models how cohesin proteins fold the genome into 3D structures by reformulating loop extrusion as a smooth, trainable process. dLEM interprets chromosome contact maps through position-specific velocity profiles, revealing mechanistic insights into genome organization. When integrated into deep learning models, it dramatically reduces complexity while predicting how genetic and epigenetic features influence chromatin folding.
+
+
+MotifDiff
+---------
+A computational tool that rapidly predicts how genetic variants affect transcription factor binding to DNA. MotifDiff uses biophysical models based on position weight matrices and a novel probability-based normalization strategy to score millions of variants in minutes, providing interpretable, mechanistic insights that address limitations of deep learning approaches on common variants.
+
+
+L0 Segmentation
+----------------
+An ultra-fast solution for approximating sequential signals as piecewise-constant segments, enabling compression and denoising of nucleotide-resolution epigenetic data. Unlike fused lasso methods that dampen the global signal, L0 segmentation preserves key biological features and can be integrated into other machine learning models for downstream analysis.
+
+
+PCnt
+----
+A hybrid method for causal discovery that integrates the PC algorithm's accuracy at estimating causal graph structure with NOTEARS' continuous optimization for quantifying causal effect sizes. PCnt uses PC's output as a constraint within NOTEARS' framework, achieving superior performance on real biological benchmarks including Perturb-seq and eQTL data.
+
+
+InstaPrism
+----------
+A fast R package for cell-type deconvolution that replaces BayesPrism's computationally expensive Gibbs sampling with a fixed-point algorithm, producing effectively equivalent results with major speed and memory improvements. Includes precompiled reference datasets for various cancer types to streamline analysis workflows.
+
+
+Heterogeneous Bulk RNAseq Simulation
+-------------------------------------
+A framework for benchmarking cell-type deconvolution methods using realistic simulated bulk RNA-seq. Standard simulation pipelines randomly sample single cells regardless of intrinsic differences, producing unrealistic variance patterns. This heterogeneous simulation strategy reveals that deconvolution method classes differ dramatically in robustness to cellular heterogeneity, with BayesPrism and hybrid MuSiC/CIBERSORTx approaches performing best.
+
+
+TISFM
+-----
+An intrinsically interpretable neural network for predicting genomic function from DNA sequence. Unlike standard deep learning models where interpretability requires expensive post-hoc analysis, TISFM's internal parameters directly correspond to relevant sequence motifs. Tested on open chromatin data across immune cell types, it outperforms standard CNN models while correctly identifying transcription factors with known roles in cell differentiation.
+
+
+NIFA
+----
+A probabilistic model that simultaneously captures discrete cell-type identity and continuous pathway activity in single-cell RNA-seq data by combining properties of non-negative matrix factorization and independent component analysis. NIFA outperforms ICA, PCA, NMF, and scCoGAPS on benchmarks, and when applied to immunotherapy data, reproduces and refines previous findings while enabling discovery of new clinically relevant cell states.
+
+
+CellCODE
+--------
+An R package for differential expression analysis that accounts for varying cell-type proportions in heterogeneous tissue samples. CellCODE uses latent variable analysis to estimate surrogate proportion variables from marker genes, then incorporates these into differential expression to improve detection of regulated genes and assign them to their cell type of origin — all without requiring additional experimental data beyond expression measurements.
+
+
+DataRemix
+---------
+An R package that optimizes a singular value decomposition-based data transformation with three tunable parameters to prioritize biological signals over noise, without requiring external dataset-specific knowledge. DataRemix outperforms standard normalization methods and was used to discover what is believed to be the first replicable trans-eQTL effect in human brain tissue.
