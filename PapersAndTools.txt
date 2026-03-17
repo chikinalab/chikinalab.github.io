@@ -1,0 +1,15 @@
+InfluenceNet
+Paper: https://www.biorxiv.org/content/10.1101/2025.11.20.689553v1.full.pdf
+Tool: https://github.com/chikinalab/InfluenceNet.
+
+
+DLEM
+Paper: https://www.biorxiv.org/content/10.1101/2025.10.17.682904v2.full.pdf
+Tool The software for directly fitting
+dLEM to contact map data is available at https://github.com/chikinalab/dLEM and
+deep dLEM model is available at https://github.com/chikinalab/dLEMpytorch.
+
+
+MotifDiff
+Paper: https://academic.oup.com/nar/article/53/18/gkaf940/8277917
+Tool: https://github.com/rezwanhosseini/MotifDiff

@@ -1,0 +1,56 @@
+<h1> Our lab leverages extensive genomic datasets to build machine learning models that advance discovery and deepen interpretative insights across biology. We address a broad spectrum of biological questions, spanning multi-omics analysis to molecular evolution.
+
+<p>
+<img src="img/PLIER.png" alt="rotating image" width="300" height="300" id="rotator"> 
+
+<script type="text/javascript">
+    (function() {
+        var rotator = document.getElementById('rotator');  
+        var imageDir = 'img/';                         
+        var delayInSeconds = 40;                            
+
+        var images = ['CellCode.png', 'PLIER.png', 'DataRemix.png', 'Bcells.png', 'singleCell.png',  'L0big.png', 'nifa3.png'];
+
+        var num = 0;
+        var changeImage = function() {
+            var len = images.length;
+            rotator.src = imageDir + images[num++];
+            if (num == len) {
+                num = 0;
+            }
+        };
+        setInterval(changeImage, delayInSeconds * 100);
+    })();
+    </script>   
+
+  </p>
+<!--
+
+<h1> We work with genomics data consortia</h1>
+<br>
+
+<p class="project">
+<h2>Molecular Transducers of Physical Activity Consortium (MoTrPAC)</h2>
+
+
+ <a href="https://commonfund.nih.gov/moleculartransducers/overview"> <img class="project" src="img/motrpac.png" alt="Motrpac"> </a>
+</p>
+
+
+  <p class="project">
+<h2>Epigenetic CHaracterization and Observation (ECHO)</h2>
+
+
+    <a href="https://www.darpa.mil/program/epigenetic-characterization-and-observation"> <img class="project" src="img/echo.jpg" alt="ECHO">  </a>
+</p>
+
+
+<h2>Assessing Immune Memory (AIM)</h2>
+
+<p class="project">
+  <a href="https://www.darpa.mil/program/assessing-immune-memory"> <img class="project" src="img/plasma.png" alt="AIM"></a>
+</p>
+
+-->
+
+

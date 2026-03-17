@@ -1,0 +1,214 @@
+
+/* Color Palette:
+   *
+   Color      Foreground/Text      Background
+   Blue:      #1c11ab              #d5e1ed
+   Green:     #88cc27              #dbf3b9
+   Orange:    #ed9014              #ede3d5
+   Yellow:                         #fff5b2
+   Gray:      #666                 #ccc
+h1{font: 22pt courier; color: #000000}
+h2{font: 14pt courier; color: #000000; font-weight: bold}
+p{font: 12pt courier; color: #000000}
+
+
+*/ 
+
+
+body {
+    width:100%;
+    display:block;
+    background-color: white;
+}
+
+h1{
+    font-family: Arial, Lucida Grande, Tahoma, sans-serif;
+    font-weight:normal;
+    font-size:24px;
+    color:#ed9014;
+    margin-top: 50px;
+    line-height:1.5;
+}
+
+h2{
+    font-family: Arial, Lucida Grande, Tahoma, sans-serif;
+    font-weight:normal;
+    font-size:18px;
+    color:#1c11ab;
+    padding-left:25px;
+    margin-top: 10px;
+    line-height:1.5;
+}
+
+div{
+    display:block;
+}
+
+a img {border: none}
+a.one{color: #ffffff}
+a:visited.one{color: #ffffff}
+a.two{color: #133084; text-decoration: none}
+a:visited.two{color: #133084}
+a:hover.two{color: blue}
+
+a.textone {
+    color: #1c11ab; 
+    text-decoration: none;
+}
+
+a:hover.textone{
+    color: #88cc27;
+}
+
+#container{
+    width: 1000px;
+    margin: 0 auto;
+    font-family: Arial, Lucida Grande, Tahoma, sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    color: #666;
+    background-color: white;
+}
+
+#header{
+    font-family: Arial, Lucida Grande, Tahoma, sans-serif;
+    color: white;
+    font-size:32px;
+    padding-top:50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    background-color:   #336699;
+}
+
+#footer{
+    border-top: 4px solid #1c11ab;
+    margin-top: 100px;
+    padding-top: 10px;
+    clear: both;
+    margin-bottom: 10px;
+    color: #bbb;
+    text-align: center;
+}
+
+#footer a{
+    color: #bbb; 
+    text-decoration: none;
+}
+
+#footer a:hover{
+    color: #88cc27;
+}
+
+img.centered{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+/* ------------------------------------------------------ */
+/*                       Content                          */
+/* ------------------------------------------------------ */
+
+div.content{
+    font-family: Arial, Lucida Grande, Tahoma, sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    color: #666;
+    text-align: justify;
+    margin: 0px 20px;
+}
+
+/* ------------------------------------------------------ */
+/*                  Publications/Personnel                */
+/* ------------------------------------------------------ */
+
+.publist div{
+    font-family: Arial, Lucida Grande, Tahoma, sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    color: #666;
+    overflow: hidden;
+}
+
+.publist ol{
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.publist li{
+    margin: 12px;
+}
+
+
+
+/* ------------------------------------------------------ */
+/*                Horizontal Navigation Bar               */
+/* ------------------------------------------------------ */
+
+#navbarh {
+    width: 100%;
+    height: 50px;
+    margin: 0 0 20px 0;
+    font-size: 1.0em;
+    float: left;
+    text-align: center;
+    display: inline;
+}
+
+#navbarh li {
+    background: #d5e1ed;
+    border-left: #1c11ab solid;
+    border-right: #1c11ab solid;
+    border-width: 1px;
+    list-style: none;
+    display: inline-block;
+    width: 45%;
+    margin: -4px;
+    height: 100%;
+    padding: 5px 25px;
+}
+
+#navbarh li:hover {
+    position: relative;
+    background-color: #fff5b2;
+}
+
+#navbarh a {
+    cursor: pointer;
+    width: auto;
+    color: #1c11ab;
+    text-decoration: none;
+
+    height: 25px;
+    line-height: 25px;
+    text-indent: 10px;
+}
+
+#navbarh a:hover {
+    color: #ed9014;
+}
+
+
+
+/* ------------------------------------------------------ */
+/*                        Schedule                        */
+/* ------------------------------------------------------ */
+
+#schedule {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#schedule tr {
+    border: 1px solid black;
+    height: 40;
+}
+
+#schedule td, th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+}

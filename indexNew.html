@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Chikina Lab</title>
+    <meta name="author" content="Chikina Lab">
+    <meta name="description"  content="Maria Chikina lab at the University of Pittsburgh School of Medicine.">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+  </head>
+
+  <body>
+
+    <div class="box">
+      <?php
+	 $mylink="homelink";
+	 include('navigate.html');
+	 ?>
+
+
+
+      
+      <div class="content">
+
+	<?php
+	   include('c-home.html') ;
+	   ?>
+
+    	
+	<?php
+	   include('c-news.html');
+	   ?>
+	
+	
+	<h1> Our Home</h1>
+	<div class="leftlogobox">
+	  <img class="logo" src="img/pittseal.jpg" alt="Pitt Seal"><p class="address">
+	    University of Pittsburgh School of Medicine<br>
+	    <a href="http://csb.pitt.edu/">Department of Computational and Systems Biology</a><br>
+	    3501 Fifth Ave,   
+	    Pittsburgh, PA 15260
+	  </p>
+	</div>
+	<div class="rightlogobox">
+	  <p class=address>
+	    Carnegie Mellon - University of Pittsburgh<br>
+	    <a href="http://www.compbio.cmu.edu/">Ph.D. Program in Computational Biology</a>
+	  </p>
+	  <a href="http://www.compbio.cmu.edu/"><img class="logo" src="img/cpcbseal.png" alt="Carnegie Mellon - University of Pittsburgh Ph.D. Program in Computational Biology"></a> 
+	</div>
+
+	<h2>Contact Maria</h2>
+	<p class=address>
+	  phone: 412 648 3338<br>
+	  email: <a href="mailto:mchikina@pitt.edu">mchikina@pitt.edu</a></p>
+
+	<br class="clear">
+      </div>
+
+      
+      <?php
+	 include('foot.html');
+	 ?>
+
+    </div>
+
+  </body>
+</html>
