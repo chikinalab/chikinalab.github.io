@@ -1,182 +1,133 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	  "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Chikina Lab</title>
-    <meta name="author" content="Chikina Lab: Projects">
-    <meta name="description"  content="Maria Chikina lab at the University of Pittsburgh medical school: Projects">
-    <meta name="keywords" content="">
-    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chikina Lab: Projects</title>
+    <meta name="author" content="Chikina Lab">
+    <meta name="description" content="Maria Chikina lab at the University of Pittsburgh School of Medicine: Projects">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
   </head>
+
   <body>
     <div class="box">
-<div class="bannerimg"> <img src="img/diag.png" alt="genetrack banner" >
-  <div class="title"><span>Chikina Lab</span></div></div>
-<div id="navigate">
-<h4>Navigation</h4>
-<ul id="navlinks">
-  <li id="homelink">
-<a class="inactive" href="index.html">Home</a>
-</li>
+      <div class="bannerimg">
+        <img src="img/diag.png" alt="Chikina Lab banner">
+        <div class="title"><span>Chikina Lab</span></div>
+      </div>
 
-<li id="projectslink">
-<a class="active" href="projects.html">Projects</a>
-</li>
+      <div id="navigate">
+        <h4>Navigation</h4>
+        <ul id="navlinks">
+          <li id="homelink"><a href="index.html">Home</a></li>
+          <li id="projectslink"><a class="active" href="projects.html">Projects</a></li>
+          <li id="toolslink"><a href="tools.html">Tools</a></li>
+          <li id="peoplelink"><a href="people.html">People</a></li>
+        </ul>
+      </div>
 
-<li id="toolslink">
-<a class="inactive" href="tools.html">Tools</a>
-</li>
-
-
-<li id="peoplelink">
-<a class="inactive" href="people.html">People</a>
-</li>
-
-</ul>
-</div>
       <div class="content">
 
+        <h1>Intrinsically Interpretable Models</h1>
+        <img class="project" src="img/tisfm.png" alt="TISFM">
+        <p class="project">
+          Advances in neural networks have enabled models that accurately recapitulate complex input-output behavior of biological systems. We can now predict context specific DNA activity and gene expression directly from sequence. However, top performing models have millions of parameters and their internal representation is not interpretable. We seek to develop models with interpretable parameters that do not sacrifice performance.
+        </p>
+        <ul>
+          <li><a href="https://www.biorxiv.org/content/10.1101/2025.11.20.689553v1">InfluenceNet: learning distance-dependent cooperative influence between transcription factor binding sites</a> - biorxiv (2025)</li>
+          <li><a href="https://academic.oup.com/nar/article/53/18/gkaf940/8277917">MotifDiff: detecting differential transcription factor binding from sequence variants</a> - Nucleic Acids Research (2025)</li>
+          <li><a href="https://academic.oup.com/bioinformatics/article/39/Supplement_1/i413/7210441">An intrinsically interpretable neural network architecture for sequence to function learning</a> - Bioinformatics (2023)</li>
+          <li><a href="https://www.nature.com/articles/s41588-023-01500-6">Benchmarking of deep neural networks for predicting personal gene expression from DNA sequence highlights shortcomings</a> - Nature Genetics (2023)</li>
+          <li><a href="https://www.cell.com/iscience/fulltext/S2589-0042(24)01841-0">Quick and effective approximation of in silico saturation mutagenesis experiments with first-order Taylor expansion</a> - iScience (2024)</li>
+        </ul>
 
-<h1> Intrinsically interpretable models</h1>
-<img class="project" src="img/tisfm.png" alt="TISFM">
-<p class="project">
-  Advances in neural networks have enabled models that accurately  recapitulate complex input-output behavior of biological systems. We can now predict context specific DNA activity and gene expression directly from sequence. However, top performing models have millions of parameters and their internal representation is not interpretable. We seek to develop models with interpretable parameters that do not sacrifice performance.
-</p>
-<ul>
-    <li><a href="https://www.biorxiv.org/content/10.1101/2025.11.20.689553v1">InfluenceNet: learning distance-dependent cooperative influence between transcription factor binding sites</a> - biorxiv (2025)</li>
-    <li><a href="https://academic.oup.com/nar/article/53/18/gkaf940/8277917">MotifDiff: detecting differential transcription factor binding from sequence variants</a> - Nucleic Acids Research (2025)</li>
-    <li><a href="https://academic.oup.com/bioinformatics/article/39/Supplement_1/i413/7210441">An intrinsically interpretable neural network architecture for sequence to function learning</a> - Bioinformatics (2023)</li>
-    <li><a href="https://www.nature.com/articles/s41588-023-01500-6">Benchmarking of deep neural networks for predicting personal gene expression from DNA sequence highlights shortcomings</a> - Nature Genetics (2023)</li>
-    <li><a href="https://www.cell.com/iscience/fulltext/S2589-0042(24)01841-0">Quick and effective approximation of in silico saturation mutagenesis experiments with first-order Taylor expansion</a> - iScience (2024)</li>
-</ul>
+        <h1>Latent Variable Models and Deconvolution</h1>
+        <img class="project" src="img/PLIER.png" alt="PLIER">
+        <p class="project">
+          Functional genomic data (such as RNAseq or DNA methylation) are composed of many layers of overlapping signals that reflect the output of individual upstream pathways. We develop methods to automatically decouple, extract and name all biological latent variables present in a dataset.
+        </p>
+        <ul>
+          <li><a href="https://academic.oup.com/bioinformatics/article/40/7/2694/6894822">InstaPrism: an R package for fast implementation of BayesPrism</a> - Bioinformatics (2024)</li>
+          <li><a href="https://www.nature.com/articles/s41592-019-0456-1">Pathway-Level Information ExtractoR (PLIER) for gene expression data</a> - Nature Methods (2019)</li>
+          <li><a href="https://academic.oup.com/bioinformatics/article/38/10/2749/6561044">Non-negative Independent Factor Analysis for single cell RNA-seq</a> - Bioinformatics (2022)</li>
+          <li><a href="https://academic.oup.com/bioinformatics/article/31/10/1584/213252">CellCODE: a robust latent variable approach to differential expression analysis for heterogeneous cell populations</a> - Bioinformatics (2015)</li>
+        </ul>
 
-<h1> Latent variable models and deconvolution</h1>
-<img class="project" src="img/PLIER.png" alt="PLIER">
-<p class="project">
-  Functional genomic data (such as RNAseq or DNA methylation) are composed of many layers of overlapping signals that reflect the output of individual upstream pathways. We develop methods to automatically decouple, extract and name all biological latent variables present in a dataset.
+        <h1>Convergent Evolution</h1>
+        <img class="project" src="img/RERconverge.png" alt="RERconverge">
+        <p class="project">
+          In collaboration with Nathan Clark's lab, we develop methods to uncover the relationships between evolutionary forces and phenotypes. Using our Relative Evolutionary Rate (RERconverge) method, we have identified genetic elements linked to subterranean and marine habitats, body mass and longevity, hair density, and more. This approach provides a powerful, complementary way to computationally map genotype-phenotype relationships.
+        </p>
+        <ul>
+          <li><a href="https://academic.oup.com/bioinformatics/article/35/22/4815/5514536">RERconverge: an R package for associating evolutionary rates with convergent traits</a> - Bioinformatics (2019)</li>
+          <li><a href="https://elifesciences.org/articles/76911">Complementary evolution of coding and noncoding sequence underlies mammalian hairlessness</a> - eLife (2022)</li>
+          <li><a href="https://academic.oup.com/mbe/article/33/9/2182/2579303">Hundreds of Genes Experienced Convergent Shifts in Selective Pressure in Marine Mammals</a> - Molecular Biology and Evolution (2016)</li>
+          <li><a href="https://elifesciences.org/articles/25884">Subterranean mammals show convergent regression in ocular genes and enhancers, along with adaptation to tunneling</a> - eLife (2017)</li>
+          <li><a href="https://elifesciences.org/articles/51089">Pan-mammalian analysis of molecular constraints underlying extended lifespan</a> - eLife (2020)</li>
+          <li><a href="https://science.sciencemag.org/content/361/6402/591">Ancient convergent losses of PON1 yield deleterious consequences for modern marine mammals</a> - Science (2018)</li>
+        </ul>
 
-  <ul>
-    <li><a href="https://academic.oup.com/bioinformatics/article/40/7/2694/6894822">InstaPrism: an R package for fast implementation of BayesPrism</a> - Bioinformatics (2024)</li>
-    <li><a href="https://www.nature.com/articles/s41592-019-0456-1">Pathway-Level Information ExtractoR (PLIER) for gene expression data</a> - Nature Methods (2019)</li>
-    <li><a href="https://academic.oup.com/bioinformatics/article/38/10/2749/6561044">Non-negative Independent Factor Analysis for single cell RNA-seq</a> - Bioinformatics (2022)</li>
-    <li><a href="https://academic.oup.com/bioinformatics/article/31/10/1584/213252">CellCODE: a robust latent variable approach to differential expression analysis for heterogeneous cell populations</a> - Bioinformatics (2015)</li>
+        <h1>Automatic Representation Learning</h1>
+        <img class="project" src="img/DataRemix.png" alt="DataRemix">
+        <p class="project">
+          Genomic data is often noisy and complex making it difficult to identify signals relevant to the underlying molecular mechanisms. We develop methods that combine machine learning techniques and insights about the biological process to learn data representation tailored for specific downstream tasks.
+        </p>
+        <ul>
+          <li><a href="https://www.biorxiv.org/content/10.1101/2023.01.26.525794v1">L0 segmentation enables data-driven concise representations of diverse epigenomic data</a> - Bioinformatics Advances (in press)</li>
+          <li><a href="https://bioinformaticshome.com/db/tool/DataRemix">DataRemix: a universal data transformation for optimal inference from gene expression datasets</a> - Bioinformatics (2020)</li>
+          <li><a href="https://academic.oup.com/bioinformatics/article/31/3/209/2366196">Hybrid Bayesian-Rank Integration Approach Improves the Predictive Power of Genomic Dataset Aggregation</a> - Bioinformatics (2015)</li>
+          <li><a href="https://academic.oup.com/bioinformatics/article/40/11/ii87/6894837">A Hybrid Constrained Continuous Optimization Approach for Optimal Causal Discovery from Biological Data</a> - Bioinformatics (2024)</li>
+        </ul>
 
+        <h1>Tumor Immunology</h1>
+        <img class="project" src="img/singleCell.png" alt="singleCell">
+        <p class="project">
+          We are working with several UPMC research teams to use single-cell assay technologies to understand the role of the tumor micro-environment in tumor progression and treatment response.
+        </p>
+        <ul>
+          <li><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-02649-7">Heterogeneous pseudobulk simulation enables realistic benchmarking of cell-type deconvolution methods</a></li>
+          <li><a href="https://www.cell.com/immunity/fulltext/S1074-7613(19)30282-3">Regulatory T-cells promote the SREBP1-dependent metabolic fitness of M2-like intratumoral macrophages via CD8+ T cells</a> - Immunity (2019)</li>
+          <li><a href="https://www.cell.com/cell/fulltext/S0092-8674(17)30576-6">Interferon-&gamma; Drives Treg Fragility to Promote Anti-tumor Immunity</a> - Cell (2017)</li>
+        </ul>
 
-</ul>
-  
-</p>
+        <h1>Exercise Genomics</h1>
+        <img class="project" src="img/motrpac.png" alt="MoTrPAC">
+        <p class="project">
+          Our group is part of the <a href="https://commonfund.nih.gov/moleculartransducers/overview">Molecular Transducers of Physical Activity Consortium (MoTrPAC)</a>. This is a large study looking at the effects of exercise through multiple genomic assays.
+        </p>
+        <ul>
+          <li><a href="https://www.cell.com/cell-genomics/fulltext/S2666-979X(23)00178-7">Molecular adaptations in response to exercise training are associated with tissue-specific transcriptomic and epigenomic signatures</a> - Cell Genomics (2023)</li>
+          <li><a href="https://www.nature.com/articles/s41586-023-06877-w">Temporal dynamics of the multi-omic response to endurance exercise training</a> - Nature (2024)</li>
+        </ul>
 
+        <h1>Epigenetic CHaracterization and Observation (ECHO)</h1>
+        <img class="project" src="img/echo.jpg" alt="ECHO">
+        <p class="project">
+          We are part of the <a href="https://www.darpa.mil/program/epigenetic-characterization-and-observation">Epigenetic CHaracterization and Observation (ECHO)</a>. The program is building a man-portable device that analyzes an individual's epigenetic "fingerprint" to potentially reveal a detailed history of that individual's exposure to infectious and chemical agents.
+        </p>
+        <ul>
+          <li><a href="https://journals.asm.org/doi/10.1128/JVI.01523-15">Human Dendritic Cell Response Signatures Distinguish 1918, Pandemic, and Seasonal H1N1 Influenza Viruses</a> - J Virol (2015)</li>
+          <li><a href="https://www.frontiersin.org/articles/10.3389/fimmu.2021.681586/full">Antibody responses to SARS-CoV-2 following an outbreak among marine recruits with asymptomatic or mild infection</a> - Frontiers in Immunology</li>
+          <li><a href="https://www.nature.com/articles/s41565-022-01108-3">A single intranasal dose of human parainfluenza virus type 3-vectored vaccine induces effective antibody and tissue-resident T cell response</a> - npj Vaccines (2022)</li>
+          <li><a href="https://www.cell.com/cell-systems/fulltext/S2405-4712(22)00459-6">Pre-infection antiviral innate immunity contributes to sex differences in SARS-CoV-2 infection</a> - Cell Systems (2022)</li>
+          <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/ctd2.47">Earlier detection of SARS-CoV-2 infection by blood RNA signature microfluidics assay</a> - Clinical and Translational Discovery (2022)</li>
+          <li><a href="https://www.embopress.org/doi/full/10.15252/msb.202311361">A methylation clock model of mild SARS-CoV-2 infection provides insight into immune dysregulation</a> - Molecular Systems Biology (2023)</li>
+          <li><a href="https://www.cell.com/cell-systems/fulltext/S2405-4712(22)00525-6">Multi-objective optimization identifies a specific and interpretable COVID-19 host response signature</a> - Cell Systems (2022)</li>
+        </ul>
 
-<h1>Convergent Evolution</h1>
-<img class="project" src="img/RERconverge.png" alt="RERconverge">
-<p class="project">
-  In collaboration with Nathan Clark's lab, we develop methods to uncover the relationships between evolutionary forces and phenotypes. Using our Relative Evolutionary Rate (RERconverge) method, we have identified genetic elements linked to subterranean and marine habitats, body mass and longevity, hair density, and more. This approach provides a powerful, complementary way to computationally map genotype-phenotype relationships.
-</p>
-  <br>
-
-  
-  <ul>
-    <li><a href="https://academic.oup.com/bioinformatics/article/35/22/4815/5514536">RERconverge: an R package for associating evolutionary rates with convergent traits</a> - Bioinformatics (2019)</li>
-    <li><a href="https://elifesciences.org/articles/76911">Complementary evolution of coding and noncoding sequence underlies mammalian hairlessness</a> - eLife (2022)</li>
-    <li><a href="https://academic.oup.com/mbe/article/33/9/2182/2579303">Hundreds of Genes Experienced Convergent Shifts in Selective Pressure in Marine Mammals</a> - Molecular Biology and Evolution (2016)</li>
-    <li><a href="https://elifesciences.org/articles/25884">Subterranean mammals show convergent regression in ocular genes and enhancers, along with adaptation to tunneling</a> - eLife (2017)</li>
-    <li><a href="https://elifesciences.org/articles/51089">Pan-mammalian analysis of molecular constraints underlying extended lifespan</a>  eLife (2020) </li>
-
-
-<li>  <a href="https://science.sciencemag.org/content/361/6402/591">Ancient convergent losses of PON1 yield deleterious consequences for modern marine mammals</a>  Science (2018)</li>
-</ul>
-
-
-
-
-<h1> Automatic representation learning</h1>
-<img class="project" src="img/DataRemix.png" alt="DataRemix">
-<p class="project">
-Genomic data is often noisy and complex making it difficult to identify signals relevant to the underlying molecular mechanisms. We develop methods that combine machine learning techniques and insights about the biological process to learn data representation tailored for specific downstream tasks.
-</p>
-<ul>
-    <li><a href="https://www.biorxiv.org/content/10.1101/2023.01.26.525794v1">L0 segmentation enables data-driven concise representations of diverse epigenomic data</a> - Bioinformatics Advances (in press)</li>
-    <li><a href="https://bioinformaticshome.com/db/tool/DataRemix">DataRemix: a universal data transformation for optimal inference from gene expression datasets</a> - Bioinformatics (2020)</li>
-    <li><a href="https://academic.oup.com/bioinformatics/article/31/3/209/2366196">Hybrid Bayesian-Rank Integration Approach Improves the Predictive Power of Genomic Dataset Aggregation</a> - Bioinformatics (2015)</li>
-    <li><a href="https://academic.oup.com/bioinformatics/article/40/11/ii87/6894837">A Hybrid Constrained Continuous Optimization Approach for Optimal Causal Discovery from Biological Data</a> - Bioinformatics (2024)</li>
-</ul>
-
-<h1>Tumor immunology</h1>
-<img class="project" src="img/singleCell.png" alt="singleCell">
-<p class="project">
-We are working with several UPMC research teams to use single-cell assay technologies to understand the role of the tumor micro-environment in tumor progression and treatment response. 
-</p>
-
-<ul>
-    <li><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-02649-7">Heterogeneous pseudobulk simulation enables realistic benchmarking of cell-type deconvolution methods</a>
-  <li><a href="https://www.cell.com/immunity/fulltext/S1074-7613(19)30282-3">Regulatory T-cells promote the SREBP1-dependent metabolic fitness of M2-like intratumoral macrophages via CD8+ T cells</a> - Immunity (2019)</li>
-    <li><a href="https://www.cell.com/cell/fulltext/S0092-8674(17)30576-6">Interferon-γ Drives Treg Fragility to Promote Anti-tumor Immunity</a> - Cell (2017)</li>
-</ul>
-
-
-
-<h1>Exercise Genomics</h1>
-<img class="project" src="img/motrpac.png" alt="Motrpac">
-<p class="project">
-  Our group is part of the <a href="https://commonfund.nih.gov/moleculartransducers/overview"> Molecular Transducers of Physical Activity Consortium (MoTraPAC) </a>. This is a large study looking at the effects of exercies through multiple genomic assays.
-</p>
-
-<ul>
-    <li><a href="https://www.cell.com/cell-genomics/fulltext/S2666-979X(23)00178-7">Molecular adaptations in response to exercise training are associated with tissue-specific transcriptomic and epigenomic signatures</a> - Cell Genomics (2023)</li>
-    <li><a href="https://www.nature.com/articles/s41586-023-06877-w">Temporal dynamics of the multi-omic response to endurance exercise training</a> - Nature (2024)</li>
-</ul>
-
-
-
-<h1>Epigenetic CHaracterization and Observation (ECHO)</h1>
-<img class="project" src="img/echo.jpg" alt="ECHO">
-<p class="project">
-  We are part of the <a href="https://www.darpa.mil/program/epigenetic-characterization-and-observation">Epigenetic CHaracterization and Observation (ECHO)  </a>. The  program is building a man-portable device that analyzes an individual’s epigenetic “fingerprint” to potentially reveal a detailed history of that individual’s exposure to infectious and chemical agents.
-</p>
-
-<ul>
-    <li><a href="https://journals.asm.org/doi/10.1128/JVI.01523-15">Human Dendritic Cell Response Signatures Distinguish 1918, Pandemic, and Seasonal H1N1 Influenza Viruses</a> - J Virol (2015)</li>
-    <li><a href="https://www.frontiersin.org/articles/10.3389/fimmu.2021.681586/full">Antibody responses to SARS-CoV-2 following an outbreak among marine recruits with asymptomatic or mild infection</a> - Frontiers in Immunology</li>
-    <li><a href="https://www.nature.com/articles/s41565-022-01108-3">A single intranasal dose of human parainfluenza virus type 3-vectored vaccine induces effective antibody and tissue-resident T cell response in the lungs and protects hamsters against SARS-CoV-2</a> - npj Vaccines (2022)</li>
-    <li><a href="https://www.cell.com/cell-systems/fulltext/S2405-4712(22)00459-6">Pre-infection antiviral innate immunity contributes to sex differences in SARS-CoV-2 infection</a> - Cell Systems (2022)</li>
-    <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/ctd2.47">Earlier detection of SARS‐CoV‐2 infection by blood RNA signature microfluidics assay</a> - Clinical and Translational Discovery (2022)</li>
-    <li><a href="https://www.embopress.org/doi/full/10.15252/msb.202311361">A methylation clock model of mild SARS‐CoV‐2 infection provides insight into immune dysregulation</a> - Molecular Systems Biology (2023)</li>
-    <li><a href="https://www.cell.com/cell-systems/fulltext/S2405-4712(22)00525-6">Multi-objective optimization identifies a specific and interpretable COVID-19 host response signature</a> - Cell Systems (2022)</li>
-</ul>
-
-<!--
-<h1>Assessing Immune Memory (AIM)</h1>
-<img class="project" src="img/plasma.png" alt="AIM">
-<p class="project">
-  We are part of the <a href="https://www.darpa.mil/program/assessing-immune-memory"> Assessing Immune Memory (AIM) </a>. The  program seeks to determine early on if a vaccine candidate will later provide long-lasting immune protection in humans, a current impossibility that would benefit the warfighter and nation immensely. 
-</p>
-
-
-<h1>Genomics of memory B cells</h1>
-<img class="project" src="img/Bcells.png" alt="Bcells">
-<p class="project">
-Memory B-cells are immune cells that long-lived immune cells that are important for "remembering" antigen exposure and are important for vaccine efficacy. The Shlomchik lab has identified functionally distinct subsets of  the cells and we are working to characterize their molecular differences using a multi-omics approach.
-</p>
--->
-
-
-<br clear="both">
+        <br style="clear: both;">
       </div>
-<!-- Default Statcounter code for Chikinlab
-http://chikinlab.org -->
-<script type="text/javascript">
-var sc_project=11748090;
-var sc_invisible=1;
-var sc_security="faa9c7cd";
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"></script>
-<noscript><div class="statcounter"><a title="Web Analytics
-Made Easy - StatCounter" href="http://statcounter.com/"
-><img class="statcounter"
-src="//c.statcounter.com/11748090/0/faa9c7cd/1/" alt="Web
-Analytics Made Easy - StatCounter"></a></div></noscript>
-<!-- End of Statcounter Code -->
+
+      <script>
+        var sc_project=11748090;
+        var sc_invisible=1;
+        var sc_security="faa9c7cd";
+      </script>
+      <script src="https://www.statcounter.com/counter/counter.js"></script>
+      <noscript><div class="statcounter"><a title="Web Analytics" href="http://statcounter.com/"><img class="statcounter" src="//c.statcounter.com/11748090/0/faa9c7cd/1/" alt="Web Analytics"></a></div></noscript>
     </div>
   </body>
 </html>

@@ -1,139 +1,99 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	  "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chikina Lab</title>
     <meta name="author" content="Chikina Lab">
-    <meta name="description"  content="Maria Chikina lab at the University of Pittsburgh School of Medicine.">
-    <meta name="keywords" content="">
-    <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+    <meta name="description" content="Maria Chikina lab at the University of Pittsburgh School of Medicine.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <div class="box">
-<div class="bannerimg"> <img src="img/diag.png" alt="genetrack banner" >
-  <div class="title"><span>Chikina Lab</span></div></div>
-<div id="navigate">
-<h4>Navigation</h4>
-<ul id="navlinks">
-  <li id="homelink">
-<a class="active" href="index.html">Home</a>
-</li>
+      <div class="bannerimg">
+        <img src="img/diag.png" alt="Chikina Lab banner">
+        <div class="title"><span>Chikina Lab</span></div>
+      </div>
 
-<li id="projectslink">
-<a class="inactive" href="projects.html">Projects</a>
-</li>
-
-<li id="toolslink">
-<a class="inactive" href="tools.html">Tools</a>
-</li>
-
-
-<li id="peoplelink">
-<a class="inactive" href="people.html">People</a>
-</li>
-
-</ul>
-</div>
+      <div id="navigate">
+        <h4>Navigation</h4>
+        <ul id="navlinks">
+          <li id="homelink"><a class="active" href="index.html">Home</a></li>
+          <li id="projectslink"><a href="projects.html">Projects</a></li>
+          <li id="toolslink"><a href="tools.html">Tools</a></li>
+          <li id="peoplelink"><a href="people.html">People</a></li>
+        </ul>
+      </div>
 
       <div class="content">
 
-<h1> Our lab leverages extensive genomic datasets to build machine learning models that advance discovery and deepen interpretative insights across biology. We address a broad spectrum of biological questions, spanning multi-omics analysis to molecular evolution.
+        <div class="hero">
+          <div class="hero-text">
+            <h1>Our lab leverages extensive genomic datasets to build machine learning models that advance discovery and deepen interpretative insights across biology. We address a broad spectrum of biological questions, spanning multi-omics analysis to molecular evolution.</h1>
+          </div>
+          <div class="hero-image">
+            <img src="img/PLIER.png" alt="rotating image" id="rotator">
+          </div>
+        </div>
 
-<p>
-<img src="img/PLIER.png" alt="rotating image" width="300" height="300" id="rotator"> 
+        <script>
+          (function() {
+            var rotator = document.getElementById('rotator');
+            var imageDir = 'img/';
+            var delayInSeconds = 4;
+            var images = ['CellCode.png', 'PLIER.png', 'DataRemix.png', 'Bcells.png', 'singleCell.png', 'L0big.png', 'nifa3.png', 'dlem.png', 'influenceNet.png'];
+            var num = 0;
+            rotator.style.transition = 'opacity 0.5s';
+            var changeImage = function() {
+              rotator.style.opacity = 0;
+              setTimeout(function() {
+                num = (num + 1) % images.length;
+                rotator.src = imageDir + images[num];
+                rotator.style.opacity = 1;
+              }, 500);
+            };
+            setInterval(changeImage, delayInSeconds * 1000);
+          })();
+        </script>
 
-<script type="text/javascript">
-    (function() {
-        var rotator = document.getElementById('rotator');  
-        var imageDir = 'img/';                         
-        var delayInSeconds = 40;                            
+        <h1>Our Home</h1>
+        <div class="leftlogobox">
+          <img class="logo" src="img/pittseal.jpg" alt="Pitt Seal">
+          <p class="address">
+            University of Pittsburgh School of Medicine<br>
+            <a href="http://csb.pitt.edu/">Department of Computational and Systems Biology</a><br>
+            3501 Fifth Ave, Pittsburgh, PA 15260
+          </p>
+        </div>
+        <div class="rightlogobox">
+          <p class="address">
+            Carnegie Mellon - University of Pittsburgh<br>
+            <a href="http://www.compbio.cmu.edu/">Ph.D. Program in Computational Biology</a>
+          </p>
+          <a href="http://www.compbio.cmu.edu/"><img class="logo" src="img/cpcbseal.png" alt="CPCB"></a>
+        </div>
 
-        var images = ['CellCode.png', 'PLIER.png', 'DataRemix.png', 'Bcells.png', 'singleCell.png',  'L0big.png', 'nifa3.png'];
+        <h2>Contact Maria</h2>
+        <p class="address">
+          phone: 412 648 3338<br>
+          email: <a href="mailto:mchikina@pitt.edu">mchikina@pitt.edu</a>
+        </p>
 
-        var num = 0;
-        var changeImage = function() {
-            var len = images.length;
-            rotator.src = imageDir + images[num++];
-            if (num == len) {
-                num = 0;
-            }
-        };
-        setInterval(changeImage, delayInSeconds * 100);
-    })();
-    </script>   
-
-  </p>
-<!--
-
-<h1> We work with genomics data consortia</h1>
-<br>
-
-<p class="project">
-<h2>Molecular Transducers of Physical Activity Consortium (MoTrPAC)</h2>
-
-
- <a href="https://commonfund.nih.gov/moleculartransducers/overview"> <img class="project" src="img/motrpac.png" alt="Motrpac"> </a>
-</p>
-
-
-  <p class="project">
-<h2>Epigenetic CHaracterization and Observation (ECHO)</h2>
-
-
-    <a href="https://www.darpa.mil/program/epigenetic-characterization-and-observation"> <img class="project" src="img/echo.jpg" alt="ECHO">  </a>
-</p>
-
-
-<h2>Assessing Immune Memory (AIM)</h2>
-
-<p class="project">
-  <a href="https://www.darpa.mil/program/assessing-immune-memory"> <img class="project" src="img/plasma.png" alt="AIM"></a>
-</p>
-
--->
-
-	<h1> Our Home</h1>
-	<div class="leftlogobox">
-	  <img class="logo" src="img/pittseal.jpg" alt="Pitt Seal"><p class="address">
-	    University of Pittsburgh School of Medicine<br>
-	    <a href="http://csb.pitt.edu/">Department of Computational and Systems Biology</a><br>
-	    3501 Fifth Ave,
-	    Pittsburgh, PA 15260
-	  </p>
-	</div>
-	<div class="rightlogobox">
-	  <p class=address>
-	    Carnegie Mellon - University of Pittsburgh<br>
-	    <a href="http://www.compbio.cmu.edu/">Ph.D. Program in Computational Biology</a>
-	  </p>
-	  <a href="http://www.compbio.cmu.edu/"><img class="logo" src="img/cpcbseal.png" alt="Carnegie Mellon - University of Pittsburgh Ph.D. Program in Computational Biology"></a>
-	</div>
-
-	<h2>Contact Maria</h2>
-	<p class=address>
-	  phone: 412 648 3338<br>
-	  email: <a href="mailto:mchikina@pitt.edu">mchikina@pitt.edu</a></p>
-
-	<br class="clear">
+        <br class="clear">
       </div>
 
-<!-- Default Statcounter code for Chikinlab
-http://chikinlab.org -->
-<script type="text/javascript">
-var sc_project=11748090;
-var sc_invisible=1;
-var sc_security="faa9c7cd";
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js"></script>
-<noscript><div class="statcounter"><a title="Web Analytics
-Made Easy - StatCounter" href="http://statcounter.com/"
-><img class="statcounter"
-src="//c.statcounter.com/11748090/0/faa9c7cd/1/" alt="Web
-Analytics Made Easy - StatCounter"></a></div></noscript>
-<!-- End of Statcounter Code -->
-
+      <!-- Statcounter -->
+      <script>
+        var sc_project=11748090;
+        var sc_invisible=1;
+        var sc_security="faa9c7cd";
+      </script>
+      <script src="https://www.statcounter.com/counter/counter.js"></script>
+      <noscript><div class="statcounter"><a title="Web Analytics" href="http://statcounter.com/"><img class="statcounter" src="//c.statcounter.com/11748090/0/faa9c7cd/1/" alt="Web Analytics"></a></div></noscript>
     </div>
   </body>
 </html>
