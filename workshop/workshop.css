@@ -1,0 +1,777 @@
+/* ==========================================================================
+   Modeling Gene Regulation — Sept 24–25, 2026, University of Chicago.
+   Standalone page. Risograph construction (paper grain, multiply-blended
+   ink, chunky geometric type, hard-offset buttons) tuned to the banner
+   illustration's palette. Shares nothing with the lab site.
+   ========================================================================== */
+
+:root {
+    /* --paper is sampled from the banner artwork so the image dissolves into
+       the page with no visible edge. Do not change one without the other. */
+    --paper:      #faf4ea;
+    --paper-rgb:  250, 244, 234;
+    --paper-deep: #f1e8d9;
+    --ink:        #232a3c;
+    --ink-soft:   #5f6678;
+
+    --blue:  #4d66a4;
+    --peri:  #8579bb;
+    --teal:  #34827f;
+    --coral: #d5643c;
+    --gold:  #d9a05b;
+
+    --measure: 34rem;
+    --gutter: clamp(1.25rem, 5vw, 5rem);
+    --rule: 1px solid rgba(35, 42, 60, 0.16);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+/* Paper grain over everything. */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.3;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== Type ================================================================ */
+
+h1, h2, h3, .display {
+    font-family: 'Bricolage Grotesque', 'Karla', Helvetica, sans-serif;
+    font-weight: 800;
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+}
+
+.mono, .chip, .facts .label, .sched time, .topbar,
+.sec-num, .btn, .daytag, .badge, .cue {
+    font-family: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+a { color: var(--coral); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { color: var(--teal); }
+
+p + p { margin-top: 0.9em; }
+
+.wrap {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+}
+
+/* ==========================================================================
+   STAGE — banner as full-height backdrop with the title over it.
+   Sized to one viewport so the whole hero, facts and CTA land above the fold.
+   ========================================================================== */
+
+.stage {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.stage-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.stage-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Favour the upper-right of the artwork — network and manifold — since
+       the title sits over the calmer left. */
+    object-position: 62% 38%;
+}
+
+/* Paper wash so the headline sits on near-solid cream while the artwork
+   stays visible to the right. Because the wash colour IS the artwork's own
+   paper colour, the transition is invisible. */
+.stage-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        /* Just enough behind the top bar to keep it readable. */
+        linear-gradient(to bottom, rgba(var(--paper-rgb), 0.6) 0%, rgba(var(--paper-rgb), 0) 13%),
+        /* Dissolve the base into the page. */
+        linear-gradient(to top,    var(--paper) 0%, rgba(var(--paper-rgb), 0) 26%),
+        /* A soft pool sitting under the headline only — this does the
+           legibility work, so the flat left-hand wash doesn't have to.
+           Raise the 0.82 if you ever set darker artwork behind it. */
+        radial-gradient(76% 66% at 25% 54%,
+            rgba(var(--paper-rgb), 0.82) 0%,
+            rgba(var(--paper-rgb), 0.6) 40%,
+            rgba(var(--paper-rgb), 0.2) 68%,
+            rgba(var(--paper-rgb), 0) 85%),
+        /* Gentle overall bias to the left, well short of opaque. */
+        linear-gradient(100deg,
+            rgba(var(--paper-rgb), 0.26) 0%,
+            rgba(var(--paper-rgb), 0.14) 44%,
+            rgba(var(--paper-rgb), 0) 72%);
+}
+
+/* Halftone bleed at the base — riso print signature, over the wash. */
+.stage-scrim::after {
+    content: "";
+    position: absolute;
+    left: -2%;
+    bottom: -4%;
+    width: 34%;
+    height: 30%;
+    background-image: radial-gradient(var(--coral) 1.4px, transparent 1.5px);
+    background-size: 11px 11px;
+    opacity: 0.28;
+    mix-blend-mode: multiply;
+}
+
+/* ===== Top bar ============================================================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+    flex-wrap: wrap;
+    padding-block: 1.3rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+}
+
+.topbar .mark { font-weight: 500; }
+.topbar .topbar-meta { color: var(--ink-soft); }
+
+/* ===== Tabs ================================================================ */
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.9rem;
+}
+
+.tabs li { list-style: none; margin: 0; }
+
+.tabs a {
+    display: block;
+    padding: 0.5em 1.15em;
+    font-family: 'DM Mono', ui-monospace, Menlo, monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    color: var(--ink-soft);
+    background: rgba(var(--paper-rgb), 0.72);
+    border: 1.5px solid rgba(35, 42, 60, 0.22);
+    transition: color 0.18s, background 0.18s, border-color 0.18s;
+}
+
+.tabs a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+    background: var(--paper);
+}
+
+.tabs a[aria-current="page"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+}
+
+/* ===== Interior page header ================================================ */
+
+.pagehead {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-bottom: clamp(2rem, 5vw, 3.25rem);
+}
+
+.pagehead .stage-media img { object-position: 62% 40%; }
+
+.pagehead .stage-scrim {
+    background:
+        linear-gradient(to bottom, rgba(var(--paper-rgb), 0.9) 0%, rgba(var(--paper-rgb), 0.5) 30%, var(--paper) 88%);
+}
+
+.pagehead .stage-scrim::after { display: none; }
+
+.pagehead h1 {
+    font-size: clamp(2rem, 4.6vw, 3.5rem);
+    margin-top: clamp(2rem, 6vw, 3.5rem);
+}
+
+.pagehead .kicker {
+    font-family: 'DM Mono', ui-monospace, Menlo, monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    margin-bottom: 0.7rem;
+}
+
+/* ===== TBA panel =========================================================== */
+
+.tba {
+    margin: 0.5rem 0 0;
+    padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 5vw, 3rem);
+    background: var(--paper-deep);
+    border: 2px dashed rgba(35, 42, 60, 0.3);
+    text-align: center;
+}
+
+.tba .big {
+    display: block;
+    font-family: 'Bricolage Grotesque', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 9vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--coral);
+    margin-bottom: 0.35em;
+}
+
+.tba p {
+    max-width: 40ch;
+    margin-inline: auto;
+    color: var(--ink-soft);
+}
+
+/* ===== Hero block ========================================================== */
+
+.hero {
+    align-self: center;
+    padding-block: clamp(1.5rem, 4vh, 3rem);
+}
+
+.hero-inner { max-width: 40rem; }
+
+.chip {
+    display: inline-block;
+    padding: 0.4em 0.9em;
+    margin-bottom: 1.4rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 4.6vw, 3.5rem);
+    margin-bottom: 0.4em;
+    text-wrap: balance;
+}
+
+/* The three terms, set as equals in three inks. */
+.triad {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15em 0.55em;
+    font-family: 'Bricolage Grotesque', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.95rem, 0.8rem + 0.85vw, 1.4rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.4rem;
+}
+
+.triad .t1 { color: var(--blue); }
+.triad .t2 { color: var(--coral); }
+.triad .t3 { color: var(--teal); }
+.triad .dot { color: var(--ink-soft); font-weight: 400; }
+
+.metaline {
+    font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.15rem);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    max-width: 34ch;
+}
+
+.metaline strong { color: var(--ink); font-weight: 700; }
+
+/* ===== Register button ===================================================== */
+
+.btn {
+    display: inline-block;
+    background: var(--coral);
+    color: var(--paper);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    padding: 1.05em 2.4em;
+    border: 2px solid var(--ink);
+    box-shadow: 7px 7px 0 var(--ink);
+    transition: transform 0.13s ease, box-shadow 0.13s ease, background 0.2s;
+}
+
+.btn:hover, .btn:focus-visible {
+    background: var(--teal);
+    color: var(--paper);
+    transform: translate(4px, 4px);
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.btn:active {
+    transform: translate(7px, 7px);
+    box-shadow: 0 0 0 var(--ink);
+}
+
+.note {
+    margin-top: 1.1rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+}
+
+/* ===== Scroll cue ========================================================== */
+
+.cue-row { padding-bottom: 1.5rem; }
+
+.cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-decoration: none;
+}
+
+.cue:hover { color: var(--coral); }
+
+.cue span.arrow {
+    display: inline-block;
+    animation: bob 2.4s ease-in-out infinite;
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(4px); }
+}
+
+/* ===== Key facts band ====================================================== */
+
+.keyfacts {
+    border-top: 2px solid var(--ink);
+    border-bottom: var(--rule);
+    background: var(--paper);
+}
+
+.facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1.5rem 1.25rem;
+    padding-block: 1.75rem;
+    list-style: none;
+}
+
+.facts li { list-style: none; }
+
+.facts .label {
+    display: block;
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    margin-bottom: 0.4em;
+}
+
+.facts .value {
+    display: block;
+    font-family: 'Bricolage Grotesque', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.25;
+}
+
+.facts .sub {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+    line-height: 1.4;
+}
+
+/* ===== Sections ============================================================ */
+
+.sec {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0 2rem;
+    padding-block: clamp(2.75rem, 7vw, 4.5rem);
+    border-top: var(--rule);
+}
+
+.sec:first-of-type { border-top: none; }
+
+.sec-num {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: var(--coral);
+    padding-top: 0.6rem;
+}
+
+.sec h2 {
+    font-size: clamp(1.7rem, 1.2rem + 2vw, 2.6rem);
+    margin-bottom: 1rem;
+}
+
+.sec-body > * { max-width: var(--measure); }
+.sec-body > .full { max-width: none; }
+
+.sec ul:not(.plain) { margin: 0.75em 0 0 1.1em; }
+.sec li { margin-bottom: 0.4em; }
+
+/* ===== Schedule ============================================================ */
+
+.daytag {
+    display: inline-block;
+    margin: 2rem 0 0.25rem;
+    padding: 0.3em 0.8em;
+    background: var(--paper-deep);
+    border-left: 4px solid var(--blue);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+}
+
+.daytag:first-child { margin-top: 0.5rem; }
+.daytag.two { border-left-color: var(--peri); }
+
+.sched {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    max-width: 42rem;
+}
+
+.sched li {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 0.2rem 1.25rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px dashed rgba(35, 42, 60, 0.25);
+    list-style: none;
+    margin: 0;
+}
+
+.sched time {
+    font-size: 0.8rem;
+    color: var(--teal);
+    padding-top: 0.25em;
+}
+
+.sched .what { font-weight: 700; }
+.sched .who  { color: var(--ink-soft); font-size: 0.95rem; }
+
+.sched li.break .what {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-soft);
+}
+
+/* ===== Organizer credits =================================================== */
+
+.orgs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0.5rem 0 0;
+    max-width: none;
+}
+
+.orgs li {
+    list-style: none;
+    margin: 0;
+    padding: 1.2rem 1.3rem 1.4rem;
+    background: var(--paper-deep);
+    border-top: 5px solid var(--blue);
+}
+
+.orgs li:nth-child(2n) { border-top-color: var(--coral); }
+.orgs li:nth-child(3n) { border-top-color: var(--teal); }
+.orgs li:nth-child(4n) { border-top-color: var(--peri); }
+
+.orgs .who {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin-bottom: 0.25em;
+}
+
+.orgs .affil {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+}
+
+/* ===== Hotels ============================================================== */
+
+.hotels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0.75rem 0 0;
+    max-width: none;
+}
+
+.hotels li {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem 1.3rem 1.4rem;
+    background: var(--paper-deep);
+    border-top: 5px solid var(--blue);
+}
+
+.hotels li:nth-child(2) { border-top-color: var(--coral); }
+.hotels li:nth-child(3) { border-top-color: var(--teal); }
+
+.hotels .name {
+    font-family: 'Bricolage Grotesque', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin-bottom: 0.15em;
+}
+
+.hotels .dist {
+    font-family: 'DM Mono', ui-monospace, Menlo, monospace;
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    margin-bottom: 0.7em;
+}
+
+.hotels .where {
+    font-style: normal;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 0.6em;
+}
+
+.hotels .hint {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 1em;
+}
+
+/* Push the link row to the card bottom so cards align regardless of text. */
+.hotels .links {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.addr { font-style: normal; line-height: 1.7; }
+
+.addr strong {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.1rem;
+}
+
+/* ===== Closing band ======================================================== */
+
+.closer {
+    position: relative;
+    margin-top: clamp(2rem, 6vw, 4rem);
+    padding-block: clamp(3.5rem, 9vw, 6rem);
+    background: var(--ink);
+    color: var(--paper);
+    overflow: hidden;
+}
+
+.closer .wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.closer-text { flex: 1 1 22rem; }
+
+.closer h2 {
+    font-size: clamp(2.2rem, 1.3rem + 4vw, 4rem);
+    margin-bottom: 0.6rem;
+    color: var(--paper);
+}
+
+.closer p {
+    color: rgba(var(--paper-rgb), 0.72);
+    max-width: 36ch;
+    margin-bottom: 2.2rem;
+}
+
+.closer .btn {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--paper);
+    box-shadow: 7px 7px 0 var(--coral);
+}
+
+.closer .btn:hover, .closer .btn:focus-visible {
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 3px 3px 0 var(--coral);
+}
+
+.closer::after {
+    content: "";
+    position: absolute;
+    right: -5%;
+    bottom: -30%;
+    width: 45%;
+    height: 150%;
+    background-image: radial-gradient(var(--coral) 2px, transparent 2.2px);
+    background-size: 16px 16px;
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+/* Rotated seats badge, riding the dark band. */
+.badge {
+    flex: 0 0 auto;
+    width: 9rem;
+    height: 9rem;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--paper);
+    transform: rotate(-9deg);
+    font-size: 0.62rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem;
+}
+
+.badge strong {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    color: var(--coral);
+}
+
+/* ===== Footer ============================================================== */
+
+.foot {
+    padding-block: 2rem 3rem;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    flex-wrap: wrap;
+}
+
+.foot a { color: var(--ink-soft); }
+.foot a:hover { color: var(--coral); }
+
+/* ===== Load-in ============================================================= */
+
+@keyframes riseIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.reveal { animation: riseIn 0.75s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.14s; }
+.d3 { animation-delay: 0.23s; }
+.d4 { animation-delay: 0.32s; }
+.d5 { animation-delay: 0.41s; }
+.d6 { animation-delay: 0.50s; }
+
+/* ===== Responsive ========================================================== */
+
+/* Portrait / narrow: the artwork can't sit beside the text, so wash it
+   vertically and let the title read over the top of it. */
+@media (max-width: 860px) {
+    .stage-media img { object-position: 68% 40%; }
+    .stage-scrim {
+        background:
+            linear-gradient(to bottom,
+                rgba(var(--paper-rgb), 0.72) 0%,
+                rgba(var(--paper-rgb), 0.55) 26%,
+                rgba(var(--paper-rgb), 0.8) 52%,
+                var(--paper) 80%);
+    }
+    .closer .wrap { justify-content: flex-start; }
+}
+
+@media (max-width: 760px) {
+    .sec { grid-template-columns: 1fr; gap: 0.4rem; }
+    .sec-num { padding-top: 0; margin-bottom: 0.3rem; }
+    .sched li { grid-template-columns: 1fr; }
+    .sched time { padding-top: 0; }
+}
+
+/* Short landscape windows: let the stage grow rather than crush the type. */
+@media (max-height: 620px) and (min-width: 861px) {
+    .stage { min-height: auto; }
+    .hero { padding-block: 3rem 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal, .cue span.arrow { animation: none !important; }
+    .btn { transition: background 0.2s; }
+    .btn:hover, .btn:active { transform: none; box-shadow: 7px 7px 0 var(--ink); }
+}
+
+@media print {
+    body::after, .stage-scrim::after, .cue-row, .badge { display: none; }
+    .stage { min-height: auto; }
+    .closer { background: none; color: var(--ink); }
+    .closer h2, .closer p { color: var(--ink); }
+    .closer::after { display: none; }
+}
