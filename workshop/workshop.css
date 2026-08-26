@@ -8,9 +8,9 @@
 :root {
     /* --paper is sampled from the banner artwork so the image dissolves into
        the page with no visible edge. Do not change one without the other. */
-    --paper:      #faf4ea;
-    --paper-rgb:  250, 244, 234;
-    --paper-deep: #f1e8d9;
+    --paper:      #f7efe4;
+    --paper-rgb:  247, 239, 228;
+    --paper-deep: #eee4d4;
     --ink:        #232a3c;
     --ink-soft:   #5f6678;
 
@@ -103,9 +103,9 @@ p + p { margin-top: 0.9em; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Favour the upper-right of the artwork — network and manifold — since
-       the title sits over the calmer left. */
-    object-position: 62% 38%;
+    /* Anchored right so the head/brain and the network bridge stay intact;
+       the crop eats into the left, where the title sits anyway. */
+    object-position: 92% 50%;
 }
 
 /* Paper wash so the headline sits on near-solid cream while the artwork
@@ -214,7 +214,7 @@ p + p { margin-top: 0.9em; }
     padding-bottom: clamp(2rem, 5vw, 3.25rem);
 }
 
-.pagehead .stage-media img { object-position: 62% 40%; }
+.pagehead .stage-media img { object-position: 88% 45%; }
 
 .pagehead .stage-scrim {
     background:
@@ -589,12 +589,6 @@ p + p { margin-top: 0.9em; }
     margin-bottom: 0.6em;
 }
 
-.hotels .hint {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    margin-bottom: 1em;
-}
-
 /* Push the link row to the card bottom so cards align regardless of text. */
 .hotels .links {
     margin-top: auto;
@@ -736,7 +730,7 @@ p + p { margin-top: 0.9em; }
 /* Portrait / narrow: the artwork can't sit beside the text, so wash it
    vertically and let the title read over the top of it. */
 @media (max-width: 860px) {
-    .stage-media img { object-position: 68% 40%; }
+    .stage-media img { object-position: 88% 50%; }
     .stage-scrim {
         background:
             linear-gradient(to bottom,
