@@ -8,8 +8,8 @@
 :root {
     /* --paper is sampled from the banner artwork so the image dissolves into
        the page with no visible edge. Do not change one without the other. */
-    --paper:      #f7efe4;
-    --paper-rgb:  247, 239, 228;
+    --paper:      #f6efe4;
+    --paper-rgb:  246, 239, 228;
     --paper-deep: #eee4d4;
     --ink:        #232a3c;
     --ink-soft:   #5f6678;
@@ -105,7 +105,7 @@ p + p { margin-top: 0.9em; }
     object-fit: cover;
     /* Anchored right so the head/brain and the network bridge stay intact;
        the crop eats into the left, where the title sits anyway. */
-    object-position: 92% 50%;
+    object-position: 96% 50%;
 }
 
 /* Paper wash so the headline sits on near-solid cream while the artwork
@@ -214,7 +214,7 @@ p + p { margin-top: 0.9em; }
     padding-bottom: clamp(2rem, 5vw, 3.25rem);
 }
 
-.pagehead .stage-media img { object-position: 88% 45%; }
+.pagehead .stage-media img { object-position: 92% 45%; }
 
 .pagehead .stage-scrim {
     background:
@@ -730,7 +730,7 @@ p + p { margin-top: 0.9em; }
 /* Portrait / narrow: the artwork can't sit beside the text, so wash it
    vertically and let the title read over the top of it. */
 @media (max-width: 860px) {
-    .stage-media img { object-position: 88% 50%; }
+    .stage-media img { object-position: 92% 50%; }
     .stage-scrim {
         background:
             linear-gradient(to bottom,
