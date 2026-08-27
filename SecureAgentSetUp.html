@@ -126,6 +126,9 @@
           <label for="input-workspace">Workspace directory (absolute path)</label>
           <input type="text" id="input-workspace" value="/home/jsmith/Dropbox/Agents" spellcheck="false">
           <div class="hint">The folder the agent should have full access to, e.g. /home/jsmith/projects/agent-work</div>
+          <label for="input-condadir">Conda environments directory (absolute path)</label>
+          <input type="text" id="input-condadir" value="/home/jsmith/anaconda3" spellcheck="false">
+          <div class="hint">Run <code>conda info --envs</code> to find this path. e.g. /home/jsmith/mambaforge or /home/jsmith/miniconda3</div>
         </div>
 
         <div id="guide-content">
@@ -224,11 +227,25 @@ sudo chmod -R g+rwx,o-rwx {{WORKSPACE}}</code></pre>
 
         <hr>
 
-        <h2>7. Give Agent Access to Mambaforge Environments</h2>
-        <p>Grant read and execute access to your conda envs (no write, so the agent cannot modify them). In this case they live in the <code>mambaforge</code> directory. Check your setup.</p>
-<pre><code>chmod o+x /home/{{USER}}/mambaforge
-chmod o+x /home/{{USER}}/mambaforge/envs
-chmod -R o+rx /home/{{USER}}/mambaforge/envs</code></pre>
+        <h2>7. Give Agent Access to Conda Environments</h2>
+
+        <h3>Finding your conda directory</h3>
+        <p>If you're not sure where conda is installed, run one of these commands from your main user account:</p>
+<pre><code># Option 1: Ask conda directly
+conda info --base
+
+# Option 2: Check which conda you're using
+which conda
+
+# Option 3: List all known conda environments and their paths
+conda env list</code></pre>
+        <p>The output of <code>conda info --base</code> will show the base directory (e.g. <code>/home/jsmith/mambaforge</code> or <code>/home/jsmith/miniconda3</code>). Enter this path in the "Conda environments directory" field above. The <code>conda env list</code> command will show all your environments and their full paths, which can help confirm the location.</p>
+
+        <h3>Grant access</h3>
+        <p>Grant read and execute access to your entire conda installation (no write, so the agent cannot modify it). This includes the conda/mamba binaries, the shell initialization scripts, and all environments.</p>
+<pre><code># Make the entire conda installation readable and traversable
+chmod -R o+rX {{CONDADIR}}</code></pre>
+        <p><code>-R o+rX</code> grants read to all files and execute only on directories (the capital <code>X</code>), recursively. This gives the agent access to the <code>conda</code> command, the shell init scripts in <code>etc/profile.d/</code>, and all environments under <code>envs/</code>.</p>
 
         <hr>
 
@@ -237,7 +254,7 @@ chmod -R o+rx /home/{{USER}}/mambaforge/envs</code></pre>
 <pre><code>sudo nano /home/agent/.bashrc</code></pre>
         <p>Add the following:</p>
 <pre><code># Initialize conda
-source /home/{{USER}}/mambaforge/etc/profile.d/conda.sh
+source {{CONDADIR}}/etc/profile.d/conda.sh
 
 # Colored prompt: bright pink username, bright yellow host and path
 PS1='\[\e[1;95m\]agent\[\e[0m\]@\[\e[1;93m\]\h\[\e[0m\]:\[\e[1;93m\]\w\[\e[0m\]\$ '
@@ -271,8 +288,6 @@ ls ~/workspace
 # Confirm you cannot escape into personal files
 ls /home/{{USER}}             # should be: Permission denied
 
-# Confirm no ugly green background on directories
-ls ~/workspace</code></pre>
 
         <hr>
 
@@ -291,6 +306,7 @@ sudo chmod -R g+rwx,o-rwx {{WORKSPACE}}</code></pre>
         (function() {
           var userInput = document.getElementById('input-user');
           var workspaceInput = document.getElementById('input-workspace');
+          var condadirInput = document.getElementById('input-condadir');
           var guideEl = document.getElementById('guide-content');
           var tableParentsCell = document.getElementById('table-parents');
 
@@ -335,6 +351,7 @@ sudo chmod -R g+rwx,o-rwx {{WORKSPACE}}</code></pre>
           function update() {
             var user = userInput.value.trim() || 'USERNAME';
             var workspace = workspaceInput.value.trim().replace(/\/+$/, '') || '/path/to/workspace';
+            var condadir = condadirInput.value.trim().replace(/\/+$/, '') || '/path/to/conda';
             var homeDir = '/home/' + user;
             var parents = getParentDirs(workspace, homeDir);
             var parentPerms = buildParentPerms(parents, user);
@@ -354,7 +371,8 @@ sudo chmod -R g+rwx,o-rwx {{WORKSPACE}}</code></pre>
             var html = templateHTML
               .replace(/\{\{USER\}\}/g, escapeHTML(user))
               .replace(/\{\{WORKSPACE\}\}/g, escapeHTML(workspace))
-              .replace(/\{\{PARENT_PERMS\}\}/g, escapeHTML(parentPerms));
+              .replace(/\{\{PARENT_PERMS\}\}/g, escapeHTML(parentPerms))
+              .replace(/\{\{CONDADIR\}\}/g, escapeHTML(condadir));
 
             guideEl.innerHTML = html;
 
@@ -367,6 +385,7 @@ sudo chmod -R g+rwx,o-rwx {{WORKSPACE}}</code></pre>
 
           userInput.addEventListener('input', update);
           workspaceInput.addEventListener('input', update);
+          condadirInput.addEventListener('input', update);
 
           // Initial render
           update();
