@@ -497,6 +497,7 @@ p + p { margin-top: 0.9em; }
 
 .sched .what, .sched .who { display: block; }
 .sched .what + .what { margin-top: 0.2rem; }
+.sched .who + .what { margin-top: 0.7rem; }
 .sched .kind { color: var(--coral); }
 
 .sched-note {
